@@ -1,4 +1,9 @@
 function Dashboard() {
-  return <h1>DashBoard</h1>
+  return (
+    <>
+      <title>Dashboard | pizza.shop</title>
+      <h1>DashBoard</h1>
+    </>
+  )
 }
 export { Dashboard }

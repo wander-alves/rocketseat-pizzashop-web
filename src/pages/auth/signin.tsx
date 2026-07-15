@@ -1,5 +1,10 @@
 function Signin() {
-  return <h1>Signin</h1>
+  return (
+    <>
+      <title>Signin | pizza.shop</title>
+      <h1>Signin</h1>
+    </>
+  )
 }
 
 export { Signin }

@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -9,19 +10,19 @@ const signinDataSchema = z.object({
   email: z.email(),
 })
 
-type SigninData = z.infer<typeof signinDataSchema>
+type SignInData = z.infer<typeof signinDataSchema>
 
-function Signin() {
+function SignIn() {
   const {
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<SigninData>()
+  } = useForm<SignInData>()
 
-  async function handleSignin(data: SigninData) {
+  async function handleSignIn(data: SignInData) {
     await new Promise((resolve) => setTimeout(resolve, 2000))
-
     console.log(data)
+    toast.success('Enviamos um link para o e-mail cadastrado.')
   }
 
   return (
@@ -39,7 +40,7 @@ function Signin() {
             </p>
           </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit(handleSignin)}>
+          <form className="space-y-4" onSubmit={handleSubmit(handleSignIn)}>
             <div className="space-y-2">
               <Label htmlFor="email">Seu e-mail</Label>
               <Input id="email" type="email" {...register('email')} />
@@ -55,4 +56,4 @@ function Signin() {
   )
 }
 
-export { Signin }
+export { SignIn }

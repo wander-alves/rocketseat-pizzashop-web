@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Link } from 'react-router-dom'
 
 const signinDataSchema = z.object({
   email: z.email(),
@@ -27,9 +28,13 @@ function SignIn() {
 
   return (
     <>
-      <title>Signin | pizza.shop</title>
+      <title>Cadastro | pizza.shop</title>
 
       <div className="p-8">
+        <Button variant="ghost" className="absolute right-8 top-8">
+          <Link to="/sign-up">Novo estabelecimento</Link>
+        </Button>
+    
         <div className="flex w-[350px] flex-col justify-center gap-6">
           <div className="flex flex-col gap-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">

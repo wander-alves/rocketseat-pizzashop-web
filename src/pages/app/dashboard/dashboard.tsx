@@ -3,7 +3,8 @@ import { MonthRevenueCard } from "@/pages/app/dashboard/month-revenue-card"
 import { MonthOrdersAmountCard } from "@/pages/app/dashboard/month-orders-amount-card"
 import { DayOrdersAmountCard } from "@/pages/app/dashboard/day-orders-amount-card"
 import { MonthCanceledOrdersCard } from "@/pages/app/dashboard/month-canceled-orders-card"
-import { RevenueChart } from "./revenue-chart"
+import { RevenueChart } from "@/pages/app/dashboard/revenue-chart"
+import { PopularProductsChart } from "@/pages/app/dashboard/popular-products-chart"
 
 function Dashboard() {
   return (
@@ -21,6 +22,7 @@ function Dashboard() {
 
         <div className="grid grid-cols-9 gap-4">
           <RevenueChart />
+          <PopularProductsChart />
         </div>
       </div>
     </>

@@ -4,6 +4,7 @@ import {
   XAxis,
   YAxis,
   Line,
+  CartesianGrid,
 } from "recharts";
 import colors from 'tailwindcss/colors';
 
@@ -20,6 +21,7 @@ function RevenueChart() {
     { date: '15/12', revenue: 800 },
     { date: '16/12', revenue: 640 },
   ]
+
   return (
     <Card className="col-span-6">
       <CardHeader className="flex-row items-center justify-between pb-8">
@@ -32,25 +34,27 @@ function RevenueChart() {
       <CardContent>
         <ResponsiveContainer width="100%" height={240}>
           <LineChart data={data} style={{ fontSize: 12 }} >
-            <YAxis 
-              stroke="#888"
-              axisLine={false}
-              tickLine={false}
-              width={80}
-              tickFormatter={(value: number) => value
-                .toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
-                })
-              }
-            />
-
             <XAxis 
               dataKey="date"
               axisLine={false}
               tickLine={false}
               dy={16}
             />
+
+            <YAxis 
+              stroke="#888"
+              axisLine={false}
+              tickLine={false}
+              width={80}
+              tickFormatter={(value: number) => 
+                value.toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })
+              }
+            />
+
+            <CartesianGrid vertical={false} className="stroke-muted" />
 
             <Line 
               dataKey="revenue"
@@ -59,6 +63,8 @@ function RevenueChart() {
               stroke={colors.violet["500"]}
             />
           </LineChart>
+
+
         </ResponsiveContainer>
 
       </CardContent>

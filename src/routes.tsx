@@ -7,11 +7,13 @@ import { SignIn } from '@/pages/auth/sign-in'
 import { SignUp } from '@/pages/auth/sign-up'
 import { Dashboard } from '@/pages/app/dashboard/dashboard'
 import { Orders } from '@/pages/app/orders/orders'
+import { NotFound } from './pages/not-found'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/',

@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { signIn } from '@/api/sign-in'
 
 const signinDataSchema = z.object({
@@ -16,11 +16,17 @@ const signinDataSchema = z.object({
 type SignInData = z.infer<typeof signinDataSchema>
 
 function SignIn() {
+  const [searchParams] = useSearchParams();
+  
   const {
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<SignInData>()
+  } = useForm<SignInData>({
+    defaultValues: {
+      email: searchParams.get('email') ?? ''
+    }
+  });
 
   const { mutateAsync: authenticate } = useMutation({
     mutationFn: signIn,

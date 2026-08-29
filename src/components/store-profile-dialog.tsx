@@ -12,10 +12,11 @@ import { Textarea } from "./ui/textarea";
 import { getManagedRestaurant } from "@/api/get-managed-restaurant";
 import { updateProfile } from "@/api/update-profile";
 import { toast } from "sonner";
+import { queryClient } from "@/lib/react-query";
 
 const storeProfileSchema = z.object({
   name: z.string().min(1),
-  description: z.string(),
+  description: z.string().nullable(),
 });
 
 type StoreProfileSchema = z.infer<typeof storeProfileSchema>;
@@ -41,6 +42,17 @@ function StoreProfileDialog(){
 
   const { mutateAsync: updateProfileFn } = useMutation({
     mutationFn: updateProfile,
+    onSuccess(_, { name, description }){
+      const cached = queryClient.getQueryData(['managed-restaurant']);
+
+      if (cached) {
+        queryClient.setQueryData(['managed-restaurant'], {
+          ...cached,
+          name,
+          description
+        })
+      }
+    }
   });
 
   async function handleUpdateProfile(data: StoreProfileSchema) {

@@ -15,4 +15,4 @@ async function getManagedRestaurant() {
   return response.data;
 }
 
-export { getManagedRestaurant };
+export { getManagedRestaurant, type GetManagedRestaurantResponse };

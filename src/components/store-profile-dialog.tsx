@@ -9,7 +9,7 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
-import { getManagedRestaurant } from "@/api/get-managed-restaurant";
+import { getManagedRestaurant, type GetManagedRestaurantResponse } from "@/api/get-managed-restaurant";
 import { updateProfile } from "@/api/update-profile";
 import { toast } from "sonner";
 import { queryClient } from "@/lib/react-query";
@@ -40,17 +40,32 @@ function StoreProfileDialog(){
     }
   });
 
+  function updateManagedRestaurantCache({ name, description }: StoreProfileSchema ){
+    const cached = queryClient.getQueryData<GetManagedRestaurantResponse>(['managed-restaurant']);
+
+    if (cached) {
+      queryClient.setQueryData(['managed-restaurant'], {
+        ...cached,
+        name,
+        description,
+      })
+    }
+
+    return { cached }
+  }
+
   const { mutateAsync: updateProfileFn } = useMutation({
     mutationFn: updateProfile,
-    onSuccess(_, { name, description }){
-      const cached = queryClient.getQueryData(['managed-restaurant']);
+    onMutate({ name, description }){
+      const { cached } = updateManagedRestaurantCache({
+        name, description
+      });
 
-      if (cached) {
-        queryClient.setQueryData(['managed-restaurant'], {
-          ...cached,
-          name,
-          description
-        })
+      return { previousProfile: cached }
+    },
+    onError(_, __, context){
+      if(context?.previousProfile){
+        updateManagedRestaurantCache(context.previousProfile);
       }
     }
   });

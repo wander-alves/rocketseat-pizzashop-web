@@ -40,4 +40,5 @@ async function getOrders({
   return response.data;
 }
 
-export { getOrders }
+export { getOrders };
+export type { GetOrdersResponse };

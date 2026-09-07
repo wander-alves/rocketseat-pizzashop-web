@@ -8,7 +8,7 @@ import { ptBR } from 'date-fns/locale';
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { OrderStatus } from "@/components/order-status";
+import { OrderStatus, type OrderStatusType } from "@/components/order-status";
 import { OrderDetails } from "@/pages/app/orders/order-details";
 import { cancelOrder } from '@/api/cancel-order';
 import type { GetOrdersResponse } from '@/api/get-orders';
@@ -19,20 +19,18 @@ import { deliverOrder } from '@/api/deliver-order';
 interface OrderTableRowProps { 
   order: {
     orderId: string;
-    status: 'pending' | 'canceled' | 'processing' | 'delivering' | 'delivered';
+    status: OrderStatusType;
     customerName: string;
     total: number;
     createdAt: string;
   }
 }
 
-type OrderStatus = 'pending' | 'canceled' | 'processing' | 'delivering' | 'delivered';
-
 function OrderTableRow({ order }: OrderTableRowProps) {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const queryClient = useQueryClient();
   
-  function updateOrderStatusOnCache(orderId: string, status: OrderStatus) {
+  function updateOrderStatusOnCache(orderId: string, status: OrderStatusType) {
     const ordersListCache = queryClient.getQueriesData<GetOrdersResponse>({
       queryKey: ['orders'],
     });

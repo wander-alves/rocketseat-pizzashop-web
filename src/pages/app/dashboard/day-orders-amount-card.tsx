@@ -1,7 +1,15 @@
 import { Utensils } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { getDayOrdersAmount } from "@/api/get-day-orders-amount";
 
 function DayOrdersAmountCard() {
+  const { data: dayOrdersAmount } = useQuery({
+    queryKey: ['metrics', 'day-orders-amount'],
+    queryFn: getDayOrdersAmount,
+  });
+  
   return (
     <Card>
       <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
@@ -10,12 +18,26 @@ function DayOrdersAmountCard() {
       </CardHeader>
 
       <CardContent className="space-y-1">
-        <span className="text-2xl font-bold tracking-tight">
-          12
-        </span>
-        <p className="text-xs text-muted-foreground">
-          <span className="text-rose-500 dark:text-rose-400"> -2%</span> em relação ao mês passado
-        </p>
+        {dayOrdersAmount &&(
+          <>
+            <span className="text-2xl font-bold tracking-tight">
+              {dayOrdersAmount.amount}
+            </span>
+            <p className="text-xs text-muted-foreground">
+              {dayOrdersAmount.yesterdayAmountVariation <= 0 
+                ? (
+                  <>
+                    <span className="text-rose-500 dark:text-rose-400">{dayOrdersAmount.yesterdayAmountVariation}%</span> em relação a ontem
+                  </>
+                ) : (
+                  <>
+                    <span className="text-emerald-500 dark:text-emerald-400">{dayOrdersAmount.yesterdayAmountVariation}%</span> em relação a ontem
+                  </>
+                )
+              }
+            </p>
+          </>
+        )}
       </CardContent>
     </Card>
   )

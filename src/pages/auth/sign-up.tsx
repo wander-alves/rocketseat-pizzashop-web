@@ -49,7 +49,6 @@ function SignUp() {
         }
       });
     } catch (error) {
-      console.log(error);
       toast.error('Ocorreu um erro ao cadastrar o restaurant. Por favor, aguarde alguns segundos e tente novamente.')
     }
   }

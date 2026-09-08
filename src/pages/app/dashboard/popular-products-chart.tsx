@@ -10,6 +10,7 @@ import colors from "tailwindcss/colors";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart } from "lucide-react";
 import { getPopularProducts } from "@/api/get-popular-products";
+import { MetricChartLoading } from "@/pages/app/dashboard/metric-chart-loading";
 
 
 function PopularProductsChart() {
@@ -36,7 +37,7 @@ function PopularProductsChart() {
       </CardHeader>
 
       <CardContent>
-        {popularProducts && (
+        {popularProducts ? (
           <ResponsiveContainer width="100%" height={240}>
               <PieChart style={{ fontSize: 12 }} >
                 <Pie 
@@ -60,8 +61,8 @@ function PopularProductsChart() {
                     }) => {
                       const RADIAN = Math.PI / 180;
                       const radius = 12 + innerRadius + (outerRadius - innerRadius);
-                      const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                      const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                      const x = cx + radius * Math.cos(-(midAngle ?? 0) * RADIAN);
+                      const y = cy + radius * Math.sin(-(midAngle ?? 0) * RADIAN);
 
                       return (
                         <text
@@ -93,6 +94,8 @@ function PopularProductsChart() {
                 </Pie>
               </PieChart>
           </ResponsiveContainer>
+        ) : (
+          <MetricChartLoading />
         )}
       </CardContent>
     </Card>

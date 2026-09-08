@@ -7,6 +7,7 @@ import { OrderTableRow } from "@/pages/app/orders/order-table-row";
 import { OrderTableFilters } from "@/pages/app/orders/order-table-filters";
 import { Pagination } from "@/components/pagination";
 import { getOrders } from "@/api/get-orders";
+import { OrderTableSkeleton } from "@/pages/app/dashboard/order-table-skeleton";
 
 function Orders() {
   const [searchParams, setSearchParams ] = useSearchParams();
@@ -19,7 +20,7 @@ function Orders() {
     .transform((page) => page - 1)
     .parse(searchParams.get('page') ?? '1');
 
-  const { data: result } = useQuery({
+  const { data: result, isLoading: isOrdersLoading } = useQuery({
     queryKey: ['orders', pageIndex, orderId, customerName, status],
     queryFn: ()=> getOrders({ 
       pageIndex,
@@ -66,6 +67,8 @@ function Orders() {
               </TableBody>
             </Table>
           </div>
+
+          {isOrdersLoading && <OrderTableSkeleton />}
 
           {result && (
             <Pagination 

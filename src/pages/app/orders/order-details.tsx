@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, Table
 
 import { getOrderDetails } from '@/api/get-order-details';
 import { OrderStatus } from '@/components/order-status';
+import { OrderDetailsSkeleton } from '@/pages/app/dashboard/order-details-skeleton';
 
 interface OrderDetailsProps { 
   orderId: string;
@@ -27,7 +28,7 @@ function OrderDetails({ orderId, isOpen }: OrderDetailsProps) {
         <DialogDescription>Detalhes do Pedido</DialogDescription>
       </DialogHeader>
 
-      {order && (
+      {order ? (
         <div className="space-y-6">
           <Table>
             <TableBody>
@@ -109,6 +110,8 @@ function OrderDetails({ orderId, isOpen }: OrderDetailsProps) {
             </TableFooter>
           </Table>
         </div>
+      ): (
+        <OrderDetailsSkeleton />
       )}
     </DialogContent>
   )

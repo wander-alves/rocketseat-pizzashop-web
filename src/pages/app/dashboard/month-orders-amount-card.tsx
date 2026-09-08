@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { getMonthOrdersAmount } from "@/api/get-month-orders-amount";
+import { MetricCardSkeleton } from "@/pages/app/dashboard/metric-card-skeleton";
 
 function MonthOrdersAmountCard() {
   const { data: monthOrdersAmount } = useQuery({
@@ -18,7 +19,7 @@ function MonthOrdersAmountCard() {
       </CardHeader>
 
       <CardContent className="space-y-1">
-        {monthOrdersAmount && (
+        {monthOrdersAmount ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
               {monthOrdersAmount.amount}
@@ -37,6 +38,8 @@ function MonthOrdersAmountCard() {
               }
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>

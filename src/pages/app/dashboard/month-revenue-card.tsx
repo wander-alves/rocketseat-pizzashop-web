@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { getMonthOrdersRevenue } from "@/api/get-month-orders-revenue";
+import { MetricCardSkeleton } from "@/pages/app/dashboard/metric-card-skeleton";
 
 function MonthRevenueCard() {
   const { data: monthOrdersRevenue } = useQuery({
@@ -18,7 +19,7 @@ function MonthRevenueCard() {
       </CardHeader>
 
       <CardContent className="space-y-1">
-        {monthOrdersRevenue && (
+        {monthOrdersRevenue ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
               {(monthOrdersRevenue.revenue/100).toLocaleString('pt-BR', {
@@ -40,6 +41,8 @@ function MonthRevenueCard() {
               }
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>

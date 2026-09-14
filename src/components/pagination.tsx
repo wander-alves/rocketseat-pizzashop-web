@@ -15,7 +15,7 @@ function Pagination({ pageIndex, perPage, totalCount, onPageChange }: Pagination
   return (
     <div className="flex items-center justify-between">
       <span className="text-sm text-muted-foreground">
-        Total de {totalCount} items(s)
+        Total de {totalCount} item(s)
       </span>
 
       <div className="flex items-center gap-6 lg:gap-8">

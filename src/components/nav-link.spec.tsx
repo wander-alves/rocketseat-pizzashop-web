@@ -1,5 +1,5 @@
-import { describe, afterEach, it, expect  } from 'vitest';
-import { render, type RenderResult } from '@testing-library/react';
+import { describe, it, expect  } from 'vitest';
+import { render } from '@testing-library/react';
 import { NavLink } from './nav-link';
 import { MemoryRouter } from 'react-router-dom';
 

@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "test:mock": "vite --port 5273 --mode test"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -51,9 +52,15 @@
     "eslint-plugin-simple-import-sort": "^13.0.0",
     "globals": "^17.7.0",
     "happy-dom": "^20.14.3",
+    "msw": "^2.15.0",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "~6.0.2",
     "vite": "^8.1.1",
     "vitest": "^5.0.0"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

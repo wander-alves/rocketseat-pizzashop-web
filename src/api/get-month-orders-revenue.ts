@@ -12,3 +12,4 @@ async function getMonthOrdersRevenue(): Promise<GetMonthOrdersRevenueResponse> {
 }
 
 export { getMonthOrdersRevenue }
+export type { GetMonthOrdersRevenueResponse }

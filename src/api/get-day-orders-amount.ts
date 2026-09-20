@@ -12,3 +12,4 @@ async function getDayOrdersAmount(): Promise<GetDayOrdersAmountResponse> {
 }
 
 export { getDayOrdersAmount }
+export type { GetDayOrdersAmountResponse }

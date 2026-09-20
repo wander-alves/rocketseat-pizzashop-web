@@ -5,16 +5,20 @@ interface GetDailyRevenueInPeriodQuery {
   to?: Date;
 }
 
-type GetDailyRevenueInPeriodResponse = {
+interface GetDailyRevenueInPeriod { 
   date: string;
   revenue: number;
-}[];
+}
+
+type GetDailyRevenueInPeriodResponse = {
+  revenuePerDay: GetDailyRevenueInPeriod[];
+};
 
 async function getDailyRevenueInPeriod({
   from,
   to,
-}: GetDailyRevenueInPeriodQuery): Promise<GetDailyRevenueInPeriodResponse> {
-  const response = await api.get('/metrics/daily-revenue-in-period',{
+}: GetDailyRevenueInPeriodQuery){
+  const response = await api.get<GetDailyRevenueInPeriodResponse>('/metrics/daily-revenue-in-period',{
     params: {
       from,
       to
@@ -25,3 +29,4 @@ async function getDailyRevenueInPeriod({
 }
 
 export { getDailyRevenueInPeriod };
+export type { GetDailyRevenueInPeriodQuery, GetDailyRevenueInPeriodResponse };

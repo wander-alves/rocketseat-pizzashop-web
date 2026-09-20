@@ -17,3 +17,4 @@ async function registerRestaurant({restaurantName, managerName, email, phone}: R
 }
 
 export { registerRestaurant }
+export type { RegisterRestaurantBody }

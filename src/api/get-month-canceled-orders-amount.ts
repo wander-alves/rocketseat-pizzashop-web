@@ -12,3 +12,4 @@ async function getMonthCanceledOrdersAmount(): Promise<GetMonthCanceledOrdersAmo
 }
 
 export { getMonthCanceledOrdersAmount }
+export type { GetMonthCanceledOrdersAmountResponse }

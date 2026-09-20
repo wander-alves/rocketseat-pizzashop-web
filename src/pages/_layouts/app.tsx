@@ -19,6 +19,8 @@ function AppLayout() {
           if(status === 401 && code === 'Unauthorized') {
             navigate('/sign-in', { replace: true });
           }
+
+          throw error;
         }
       }
     );

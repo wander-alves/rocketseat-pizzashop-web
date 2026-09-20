@@ -12,4 +12,5 @@ async function updateProfile({ name, description }: UpdateProfileBody) {
   });
 }
 
-export { updateProfile }
+export { updateProfile };
+export type { UpdateProfileBody };

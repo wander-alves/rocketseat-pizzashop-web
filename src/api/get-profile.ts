@@ -17,3 +17,4 @@ async function getProfile(): Promise<GetProfileResponse> {
 }
 
 export { getProfile };
+export type { GetProfileResponse };

@@ -8,4 +8,5 @@ async function cancelOrder({ orderId }: CancelOrderParams) {
   await api.patch(`/orders/${orderId}/cancel`);
 }
 
-export { cancelOrder }
+export { cancelOrder };
+export type { CancelOrderParams };

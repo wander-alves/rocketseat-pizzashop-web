@@ -8,4 +8,5 @@ async function approveOrder({ orderId }: ApproveOrderParams) {
   await api.patch(`/orders/${orderId}/approve`);
 }
 
-export { approveOrder }
+export { approveOrder };
+export type { ApproveOrderParams };

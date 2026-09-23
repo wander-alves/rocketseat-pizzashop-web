@@ -9,3 +9,4 @@ async function dispatchOrder({ orderId }: DispatchOrderParams) {
 }
 
 export { dispatchOrder }
+export type { DispatchOrderParams };

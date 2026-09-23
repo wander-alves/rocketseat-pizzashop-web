@@ -8,4 +8,5 @@ async function deliverOrder({ orderId }: DeliverOrderParams) {
   await api.patch(`/orders/${orderId}/deliver`);
 }
 
-export { deliverOrder }
+export { deliverOrder };
+export type { DeliverOrderParams };

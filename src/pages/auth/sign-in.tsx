@@ -72,7 +72,7 @@ function SignIn() {
             </div>
 
             <Button className="w-full" type="submit" disabled={isSubmitting}>
-              Accessar Painel
+              Acessar Painel
             </Button>
           </form>
         </div>

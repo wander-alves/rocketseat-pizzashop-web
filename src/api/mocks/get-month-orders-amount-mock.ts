@@ -8,8 +8,8 @@ const getMonthOrdersAmountMock = http.get<
     GetMonthOrdersAmountResponse
   >('/metrics/month-orders-amount', ()=> {
     return HttpResponse.json({
-      amount: 40,
-      lastMonthAmountVariation: -10,
+      amount: 250,
+      lastMonthAmountVariation: -25,
     });  
 });
 

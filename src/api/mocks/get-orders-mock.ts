@@ -16,7 +16,7 @@ const statuses: OrderStatus[] = [
 const ordersMock: Orders  = Array.from({ length: 60 }).map((_, i)=> {
   return { 
     orderId: `order-${i + 1}`,
-    customerName: `Customer ${i}`,
+    customerName: `Customer ${i + 1}`,
     total: Math.random() * i * 100,
     status: statuses[i % 5],
     createdAt: new Date().toISOString(),

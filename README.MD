@@ -13,6 +13,9 @@ Esse projeto foi desenvolvido com café, amor e também com seguintes tecnologia
 - Zod.js
 - Tailwind
 - ShadCN
+- Mocking Service Worker
+- React Testing Library
+- Playwright
 ...
 
 ## Repositório da aula

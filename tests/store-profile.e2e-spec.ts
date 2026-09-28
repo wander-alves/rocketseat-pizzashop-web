@@ -12,14 +12,12 @@ test('update profile successfully', async ({ page }) => {
 
   const toast = page.getByText('Perfil atualizado com sucesso!');
 
-  expect(toast).toBeVisible();
+  await expect(toast).toBeVisible();
 
   await page.getByRole('button', { name: 'Close' }).click();
 
   const button = page.getByRole('button', { name: 'Rocket Pizza' });
-  expect(button).toBeVisible();
-
-  await page.waitForTimeout(2000)  
+  await expect(button).toBeVisible();
 });
 
 test('update profile failure', async ({ page }) => {
@@ -34,11 +32,11 @@ test('update profile failure', async ({ page }) => {
 
   const toast = page.getByText('Falha ao atualizar o perfil. Tente novamente.');
 
-  expect(toast).toBeVisible();
+  await expect(toast).toBeVisible();
 
   await page.getByRole('button', { name: 'Close' }).click();
 
   const button = page.getByRole('button', { name: 'Pizza Shop' });
-  expect(button).toBeVisible();
+  await expect(button).toBeVisible();
 });
 
